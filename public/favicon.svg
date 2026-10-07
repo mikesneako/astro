@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Background Radial Gradient -->
+    <radialGradient id="spaceGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#071b10" />
+      <stop offset="70%" stop-color="#020805" />
+      <stop offset="100%" stop-color="#000201" />
+    </radialGradient>
+
+    <!-- Neon Green Core Gradient -->
+    <linearGradient id="neonGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#39ff14" />
+      <stop offset="50%" stop-color="#00ff66" />
+      <stop offset="100%" stop-color="#00cc44" />
+    </linearGradient>
+
+    <!-- Visor Reflective Cyber Gradient -->
+    <linearGradient id="visorGlass" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#00ff88" stop-opacity="0.85" />
+      <stop offset="75%" stop-color="#052617" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#010f08" stop-opacity="0.98" />
+    </linearGradient>
+
+    <!-- Armor Dark Metal Gradient -->
+    <linearGradient id="cyberMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f2d25" />
+      <stop offset="50%" stop-color="#111814" />
+      <stop offset="100%" stop-color="#080c0a" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle Horn Glow -->
+    <filter id="hornGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Circular Outer Background -->
+  <circle cx="64" cy="64" r="62" fill="url(#spaceGlow)" stroke="#00ff66" stroke-width="2.5" stroke-opacity="0.45" />
+
+  <!-- Outer Cyber Tech Ring with tick marks -->
+  <circle cx="64" cy="64" r="58" fill="none" stroke="#00ff66" stroke-width="1" stroke-dasharray="8 6 2 6" stroke-opacity="0.6" />
+
+  <!-- Ambient Space Dust & Stars -->
+  <circle cx="22" cy="30" r="1" fill="#39ff14" opacity="0.6" />
+  <circle cx="106" cy="32" r="1.2" fill="#00e5ff" opacity="0.7" />
+  <circle cx="34" cy="100" r="0.8" fill="#ffffff" opacity="0.5" />
+  <circle cx="95" cy="98" r="1.1" fill="#39ff14" opacity="0.6" />
+
+  <!-- LEFT BULL HORN -->
+  <path d="M 40 44 C 34 32 20 22 14 11 C 12 8 16 11 20 18 C 24 24 33 34 42 41 Z" 
+        fill="url(#neonGreen)" filter="url(#hornGlow)" />
+  <path d="M 40 44 C 34 32 20 22 14 11 C 16 13 22 20 28 29 C 32 35 38 41 40 44 Z" 
+        fill="#ffffff" opacity="0.4" />
+
+  <!-- RIGHT BULL HORN -->
+  <path d="M 88 44 C 94 32 108 22 114 11 C 116 8 112 11 108 18 C 104 24 95 34 86 41 Z" 
+        fill="url(#neonGreen)" filter="url(#hornGlow)" />
+  <path d="M 88 44 C 94 32 108 22 114 11 C 112 13 106 20 100 29 C 96 35 90 41 88 44 Z" 
+        fill="#ffffff" opacity="0.4" />
+
+  <!-- ASTRONAUT HELMET OUTER RIM -->
+  <ellipse cx="64" cy="66" rx="43" ry="41" fill="url(#cyberMetal)" stroke="#00ff66" stroke-width="2.2" filter="url(#glow)" />
+  
+  <!-- HELMET TOP CROWN REINFORCEMENT -->
+  <path d="M 38 34 C 46 29 55 27 64 27 C 73 27 82 29 90 34 C 84 31 74 29 64 29 C 54 29 44 31 38 34 Z" 
+        fill="#00ff66" opacity="0.85" />
+  <rect x="58" y="27" width="12" height="4" rx="2" fill="#39ff14" />
+
+  <!-- VISOR INNER HOUSING -->
+  <ellipse cx="64" cy="65" rx="35" ry="33" fill="#030805" stroke="#163825" stroke-width="1.5" />
+
+  <!-- VISOR DOME REFLECTIVE GLASS -->
+  <ellipse cx="64" cy="65" rx="33" ry="31" fill="url(#visorGlass)" />
+
+  <!-- VISOR CYBER SPECULAR REFLECTION (Curved Upper Glare) -->
+  <path d="M 39 52 C 45 42 55 38 64 38 C 73 38 83 42 89 52 C 81 44 73 41 64 41 C 55 41 47 44 39 52 Z" 
+        fill="#ffffff" opacity="0.55" />
+
+  <!-- BULL FACE / SILHOUETTE INSIDE VISOR -->
+  <!-- Snout / Muzzle outline -->
+  <path d="M 49 71 C 49 66 54 62 64 62 C 74 62 79 66 79 71 C 79 78 74 85 64 85 C 54 85 49 78 49 71 Z" 
+        fill="#0a1a12" stroke="#00ff66" stroke-width="1.2" opacity="0.9" />
+
+  <!-- Nostrils -->
+  <ellipse cx="57" cy="76" rx="3" ry="2.2" fill="#00ff66" transform="rotate(-15 57 76)" />
+  <ellipse cx="71" cy="76" rx="3" ry="2.2" fill="#00ff66" transform="rotate(15 71 76)" />
+  <circle cx="57" cy="76" r="1.2" fill="#ffffff" />
+  <circle cx="71" cy="76" r="1.2" fill="#ffffff" />
+
+  <!-- GLOWING CYBER BULL EYES -->
+  <polygon points="46,55 56,57 53,60 45,58" fill="#39ff14" filter="url(#glow)" />
+  <polygon points="82,55 72,57 75,60 83,58" fill="#39ff14" filter="url(#glow)" />
+  <circle cx="51" cy="57" r="1" fill="#ffffff" />
+  <circle cx="77" cy="57" r="1" fill="#ffffff" />
+
+  <!-- LOWER BREATHING PORT / CHIN COMM-LINK -->
+  <rect x="52" y="93" width="24" height="8" rx="3" fill="#12251a" stroke="#00ff66" stroke-width="1.2" />
+  <circle cx="58" cy="97" r="1.5" fill="#39ff14" />
+  <circle cx="64" cy="97" r="1.5" fill="#00e5ff" />
+  <circle cx="70" cy="97" r="1.5" fill="#39ff14" />
+
+  <!-- BOTTOM HELMET COLLAR / SUIT MOUNT -->
+  <path d="M 32 99 C 42 108 86 108 96 99 L 98 108 C 88 116 40 116 30 108 Z" 
+        fill="#08100c" stroke="#00ff66" stroke-width="1.5" />
+</svg>
