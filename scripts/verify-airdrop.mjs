@@ -33,8 +33,8 @@ try {
   const [saved] = await sql`SELECT wallet_address, amount, status FROM public.airdrop_claims WHERE wallet_address = ${wallets[0]}`;
   assert.equal(saved.wallet_address, wallets[0]);
   assert.equal(Number(saved.amount), config.airdrop.rewardTokens);
-  assert.equal(saved.status, "DEMO_CLAIMED");
-  checks.push("Claim saves wallet, reward and demo status in PostgreSQL and launches 64 animated confetti particles");
+  assert.equal(saved.status, "CLAIMED");
+  checks.push("Claim saves wallet, reward and claim status in PostgreSQL and launches 64 animated confetti particles");
   await page.reload({ waitUntil: "networkidle" });
   await page.getByLabel("Your Solana wallet address").fill(wallets[0]);
   await page.getByRole("button", { name: "Claim my airdrop" }).click();
@@ -42,7 +42,7 @@ try {
   assert.equal(await page.locator(".confetti").count(), 0);
   checks.push("Duplicate wallet remains claimed after reload, with no second allocation or celebration");
   let poolBlocked = false;
-  try { await sql`SELECT public.claim_demo_airdrop(${wallets[1]}, ${config.airdrop.rewardTokens}, ${config.airdrop.rewardTokens})`; }
+  try { await sql`SELECT public.claim_airdrop(${wallets[1]}, ${config.airdrop.rewardTokens}, ${config.airdrop.rewardTokens})`; }
   catch (error) { poolBlocked = error.message.includes("Airdrop pool exhausted"); }
   assert.equal(poolBlocked, true);
   checks.push("Database refuses claims beyond pool capacity");

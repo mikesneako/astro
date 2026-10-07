@@ -808,7 +808,7 @@ img {
 .purchase-button svg:last-child {
   margin-left: auto;
 }
-.demo-note {
+.airdrop-note {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2472,7 +2472,7 @@ summary::-webkit-details-marker {
     min-height: 50px;
     font-size: 14px;
   }
-  .demo-note {
+  .airdrop-note {
     font-size: 10px;
     margin-top: 18px;
   }

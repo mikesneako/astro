@@ -2,7 +2,7 @@
   "passed": true,
   "checks": [
     "Server rejects invalid wallets",
-    "Claim saves wallet, reward and demo status in PostgreSQL and launches 64 animated confetti particles",
+    "Claim saves wallet, reward and claim status in PostgreSQL and launches 64 animated confetti particles",
     "Duplicate wallet remains claimed after reload, with no second allocation or celebration",
     "Database refuses claims beyond pool capacity",
     "Concurrent claims for the same wallet produce exactly one record",

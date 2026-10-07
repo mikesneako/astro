@@ -39,7 +39,7 @@ try {
           Number(saved.presale_supply) !== presaleSupply || Number(saved.total_cap) !== presaleCapacityUsd || saved.site_config.brand.ticker !== config.brand.ticker) throw new Error("Config verification failed");
       return result;
     });
-    const report = { resetAt: new Date().toISOString(), scope: "Demo project presale and airdrop tables only", before, after, config: { name: config.brand.name, ticker: config.brand.ticker, tokenPriceUsd: referenceTokenPriceUsd, presaleSupply, goalUsd: presaleCapacityUsd }, verified: true };
+    const report = { resetAt: new Date().toISOString(), scope: "Presale and airdrop tables only", before, after, config: { name: config.brand.name, ticker: config.brand.ticker, tokenPriceUsd: referenceTokenPriceUsd, presaleSupply, goalUsd: presaleCapacityUsd }, verified: true };
     await writeFile(new URL("./db-reset-result.json", import.meta.url), `${JSON.stringify(report, null, 2)}\n`);
     console.log(JSON.stringify(report, null, 2));
   }

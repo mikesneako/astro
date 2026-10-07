@@ -1,6 +1,6 @@
 import { PublicKey } from "@solana/web3.js";
 import { config } from "@/config";
-import { claimDemoAirdrop, getAirdropStats } from "@/lib/db";
+import { claimAirdrop, getAirdropStats } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
@@ -10,7 +10,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  if (!config.airdrop.enabled || !config.airdrop.demoMode) return Response.json({ success: false, error: "Demo claims are currently closed." }, { status: 403 });
+  if (!config.airdrop.enabled) return Response.json({ success: false, error: "Airdrop claims are currently closed." }, { status: 403 });
   let walletAddress: string;
   try {
     const body = await request.json();
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(walletAddress) || new PublicKey(walletAddress).toBase58() !== walletAddress) throw new Error("Invalid wallet");
   } catch { return Response.json({ success: false, error: "Enter a valid Solana wallet address." }, { status: 400 }); }
   try {
-    const claim = await claimDemoAirdrop(walletAddress);
+    const claim = await claimAirdrop(walletAddress);
     if ("exhausted" in claim) return Response.json({ success: false, error: "The airdrop pool is fully claimed." }, { status: 409 });
     return Response.json({ success: true, claim }, { status: claim.alreadyClaimed ? 200 : 201 });
   } catch { return Response.json({ success: false, error: "Couldn’t save your claim. Please try again." }, { status: 503 }); }

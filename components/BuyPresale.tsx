@@ -72,7 +72,7 @@ export default function BuyPresale() {
             <p id="transfer-instructions"><Send size={13} /><span>{error ? "Enter your amount, then copy this address and send from your own wallet." : <>Send <strong>{formatNumber(sol, 9)} {config.network.currency}</strong> to this address from your own wallet.</>}</span></p>
           </div>
           <button type="submit" className="button purchase-button" disabled={Boolean(error) || status !== "open" || copying}>{copied ? <Check size={18} /> : <Copy size={18} />}{status === "closed" ? "Presale closed" : status === "upcoming" ? "Opening soon" : copying ? "Copying…" : copied ? "Address copied!" : "Copy presale wallet"}<ArrowUpRight size={18} /></button>
-          <p className="transfer-note">{config.network.cluster === "devnet" ? "Use devnet SOL for this demo. " : ""}Complete the transfer in your wallet.</p>
+          <p className="transfer-note">{config.network.cluster === "devnet" ? "Use devnet SOL for testing. " : ""}Complete the transfer in your wallet.</p>
         </form>
         <div role="status" aria-live="polite">{message && <p className="inline-message">{message}</p>}</div>
       </div>

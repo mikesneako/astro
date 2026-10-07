@@ -1,6 +1,6 @@
-# Demo Bull
+# Astro Bull
 
-A compact AMOLED neubrutalist meme presale built with Next.js. Includes the floating bull, manual-transfer presale calculator, database-backed demo airdrops with confetti, simulated price charts, tokenomics, roadmap, FAQ, and community links. Buyers enter a SOL amount, copy the presale address, and send the transfer from their own wallet.
+A compact AMOLED neubrutalist meme presale built with Next.js. Includes the floating bull, manual-transfer presale calculator, database-backed airdrops with confetti, simulated price charts, tokenomics, roadmap, FAQ, and community links. Buyers enter a SOL amount, copy the presale address, and send the transfer from their own wallet.
 
 ## Run
 
@@ -25,13 +25,13 @@ The reset script also needs `DB_POSTGRES_URL` (or `DB_POSTGRES_PRISMA_URL`). It 
 
 ```sh
 bun run db:reset          # Preview only
-bun run db:reset --apply  # Destructive reset of the four demo tables
-bun run db:sync           # Sync config and install the demo airdrop function without clearing data
+bun run db:reset --apply  # Destructive reset of the four tables
+bun run db:sync           # Sync config and install the airdrop function without clearing data
 ```
 
 Successful resets create `scripts/db-reset-result.json` with before/after counts and verification. Never place credentials in `config.ts`.
 
-The airdrop POST validates Solana public keys and saves the wallet, configured amount, and `DEMO_CLAIMED` status. An atomic database function and unique wallet index prevent duplicate claims and pool over-allocation, including concurrent requests. Only the server service role can execute that function. First claims show confetti, respecting reduced-motion preferences. Repeat claims return the original reward. These are saved demo allocations, not on-chain token transfers.
+The airdrop POST validates Solana public keys and saves the wallet, configured amount, and `CLAIMED` status. An atomic database function and unique wallet index prevent duplicate claims and pool over-allocation, including concurrent requests. Only the server service role can execute that function. First claims show confetti, respecting reduced-motion preferences. Repeat claims return the original reward. These are saved allocations, not on-chain token transfers.
 
 The chart loads from `GET /api/market/chart`, with 1H/24H/7D controls and pointer inspection. A deterministic Node backend generates one snapshot per calendar day in `market.snapshotTimeZone` (Africa/Lagos by default). Prices, volume, and market cap are identical for all visitors throughout that day, including after reloads or server restarts. All ranges share a closing price and overlapping historical timestamps agree. The response includes its next update time; the client refreshes at midnight and when a stale tab regains focus. Cache lifetime never crosses midnight. Generation is stateless and needs no scheduled job or market database table. Configuration/seed changes intentionally change the simulated series. The UI shows an error/retry state when the backend is unavailable instead of inventing browser data. No live market activity is implied.
 

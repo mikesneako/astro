@@ -1,6 +1,6 @@
 {
   "resetAt": "2026-10-07T13:56:23.565Z",
-  "scope": "Demo project presale and airdrop tables only",
+  "scope": "Presale and airdrop tables only",
   "before": {
     "wallets": 0,
     "transactions": 0,
@@ -14,8 +14,8 @@
     "config_rows": 1
   },
   "config": {
-    "name": "Demo Bull",
-    "ticker": "DEMOBULL",
+    "name": "Astro Bull",
+    "ticker": "ASTROBULL",
     "tokenPriceUsd": 0.000001,
     "presaleSupply": 8000000000,
     "goalUsd": 8000

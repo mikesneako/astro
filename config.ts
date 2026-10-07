@@ -19,7 +19,7 @@ export const config = {
   site: {
     url: "https://astrobull.fun",
     description:
-      "An astronaut-inspired Solana meme token. Explore the presale, claim a demo airdrop, and join the herd.",
+      "An astronaut-inspired Solana meme token. Explore the presale, claim your airdrop, and join the herd.",
     shareImage: "/bull-astronaut-floating.png",
     accent: "#bcff3b",
     background: "#050505",
@@ -68,12 +68,11 @@ export const config = {
   },
   airdrop: {
     enabled: true,
-    demoMode: false,
     rewardTokens: 200_000,
     poolTokens: 500_000_000,
     title: ["FREE TOKENS.", "BIG BULL ENERGY."],
     description:
-      "A little something for the herd. Drop your Solana wallet below and claim your demo allocation.",
+      "A little something for the herd. Drop your Solana wallet below and claim your allocation.",
   },
   market: {
     title: "THE VIBE CHART.",
@@ -81,7 +80,7 @@ export const config = {
     // Server simulation settings. Clients receive series from /api/market/chart.
     // Each snapshot stays fixed until midnight in this timezone.
     snapshotTimeZone: "Africa/Lagos",
-    simulationSeed: "demo-bull-market-v1",
+    simulationSeed: "astro-bull-market-v1",
     referencePriceUsd: 0.0000018,
     referenceVolumeUsd: 2450,
     ranges: [
@@ -172,7 +171,7 @@ export const config = {
       {
         question: "Can I claim the airdrop more than once?",
         answer:
-          "Each Solana wallet can claim one demo allocation while the pool lasts. Claims are saved, but no real tokens are transferred. You never need to share a seed phrase or sign a transaction.",
+          "Each Solana wallet can claim one allocation while the pool lasts. Claims are saved, but no real tokens are transferred. You never need to share a seed phrase or sign a transaction.",
       },
     ],
   },

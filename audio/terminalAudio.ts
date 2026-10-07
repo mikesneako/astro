@@ -10,7 +10,7 @@ class TerminalAudioEngine {
   constructor() {
     try {
       if (typeof window !== "undefined") {
-        const saved = localStorage.getItem("DemoBull_audio_muted");
+        const saved = localStorage.getItem("AstroBull_audio_muted");
         if (saved !== null) {
           this.isMuted = saved === "true";
         }
@@ -42,7 +42,7 @@ class TerminalAudioEngine {
     this.isMuted = muted;
     try {
       if (typeof window !== "undefined") {
-        localStorage.setItem("DemoBull_audio_muted", String(muted));
+        localStorage.setItem("AstroBull_audio_muted", String(muted));
       }
     } catch {
       // ignore

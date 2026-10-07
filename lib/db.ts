@@ -66,15 +66,15 @@ export async function getAirdropStats() {
   return { totalClaims, totalAllocated };
 }
 
-export async function claimDemoAirdrop(walletAddress: string) {
-  const { data, error } = await database().rpc("claim_demo_airdrop", {
+export async function claimAirdrop(walletAddress: string) {
+  const { data, error } = await database().rpc("claim_airdrop", {
     p_wallet: walletAddress,
     p_amount: config.airdrop.rewardTokens,
     p_pool: config.airdrop.poolTokens,
   }).abortSignal(AbortSignal.timeout(8000));
   if (error) {
     if (error.message.includes("Airdrop pool exhausted")) return { exhausted: true as const };
-    throw new Error("Unable to save the demo claim.");
+    throw new Error("Unable to save the airdrop claim.");
   }
   return data as { walletAddress: string; amount: number; alreadyClaimed: boolean; totalClaims: number; totalAllocated: number };
 }
