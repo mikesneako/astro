@@ -1,0 +1,24 @@
+{
+  "resetAt": "2026-10-07T13:56:23.565Z",
+  "scope": "Demo project presale and airdrop tables only",
+  "before": {
+    "wallets": 0,
+    "transactions": 0,
+    "airdrop_claims": 1433,
+    "config_rows": 1
+  },
+  "after": {
+    "wallets": 0,
+    "transactions": 0,
+    "airdrop_claims": 0,
+    "config_rows": 1
+  },
+  "config": {
+    "name": "Demo Bull",
+    "ticker": "DEMOBULL",
+    "tokenPriceUsd": 0.000001,
+    "presaleSupply": 8000000000,
+    "goalUsd": 8000
+  },
+  "verified": true
+}

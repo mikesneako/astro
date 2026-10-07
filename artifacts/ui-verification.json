@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "checks": [
+    "API and visible presale address use the same config",
+    "Responsive quote and layout at 320px",
+    "Responsive quote and layout at 390px",
+    "Responsive quote and layout at 600px",
+    "Responsive quote and layout at 768px",
+    "Responsive quote and layout at 1024px",
+    "Responsive quote and layout at 1440px",
+    "Invalid, empty and out-of-range amounts disable copying",
+    "All four pricing tiers are exact and presale progress is removed",
+    "Copies the exact configured address without checkout, fake receipt or storage writes",
+    "Hero wallet copies the same configured address",
+    "Amount changes reset copy feedback; denied clipboard selects the full address for manual copying",
+    "Copying leaves presale database totals unchanged",
+    "Mobile menu, manual-transfer FAQ and configured explorer link work",
+    "No browser runtime errors"
+  ]
+}

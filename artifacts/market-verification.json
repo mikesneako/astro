@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checks": [
+    "Backend returns identical daily snapshots and a shared closing price for every range",
+    "Rendered chart persists across reloads and uses the backend time ranges",
+    "Backend failures show retry UI, with no client-generated replacement data",
+    "An open tab fetches the next daily snapshot at the backend-provided expiry"
+  ]
+}

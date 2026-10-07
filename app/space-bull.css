@@ -1,0 +1,1532 @@
+/* ==========================================================================
+   APP.CSS - SpaceBull Deep Space Terminal // Mobile-First Ultra-Responsive
+   ========================================================================== */
+
+/* Root Fullscreen Viewport */
+.app-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+/* ==========================================================================
+   1. ASTRONAUT HERO POSITIONING & SCENE WRAPPER
+   ========================================================================== */
+.astronaut-scene-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Desktop terminal open: shifts to the left */
+@media (min-width: 900px) {
+  .astronaut-scene-wrapper.is-terminal-active {
+    transform: translateX(-24vw) scale(0.92);
+  }
+}
+
+/* Mobile & Tablet Terminal Shift */
+@media (max-width: 899px) {
+  .astronaut-scene-wrapper.is-terminal-active {
+    transform: translateY(-22vh) scale(0.65);
+    opacity: 0.35;
+    filter: blur(2px);
+  }
+}
+
+/* Hero Character Image */
+.astronaut-hero-image {
+  height: 58vh;
+  max-height: 640px;
+  min-height: 320px;
+  width: auto;
+  object-fit: contain;
+  transition: all 0.5s ease;
+  user-select: none;
+}
+
+@media (max-height: 720px) {
+  .astronaut-hero-image {
+    height: 48vh;
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .astronaut-hero-image {
+    height: 38vh;
+    max-height: 290px;
+    max-width: 65vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .astronaut-hero-image {
+    height: 33vh;
+    max-height: 250px;
+    max-width: 58vw;
+  }
+}
+
+/* ==========================================================================
+   2. TOP NAVIGATION / TELEMETRY HUD
+   ========================================================================== */
+.hud-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 35;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* On mobile, when terminal modal is open, HUD completely hides to never block modal close button */
+@media (max-width: 899px) {
+  .hud-container.hud-terminal-active {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* --- DESKTOP HUD LAYOUT (>= 768px) --- */
+.hud-desktop-view {
+  display: block;
+}
+
+.hud-mobile-view {
+  display: none;
+}
+
+.hud-top-left {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 30;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: #4f725f;
+}
+
+.telemetry-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-led-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #00ff66;
+  box-shadow: 0 0 6px #00ff66;
+  animation: ledBlink 2.5s infinite;
+  flex-shrink: 0;
+}
+
+.telemetry-label {
+  color: #7fa890;
+  font-weight: 600;
+}
+
+.telemetry-sep {
+  color: #314e3b;
+}
+
+.telemetry-time {
+  color: #4f725f;
+}
+
+.telemetry-node {
+  color: #435e50;
+  font-size: 0.64rem;
+}
+
+.hud-top-center {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 35;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hud-brand-title {
+  font-family: var(--font-orbitron, "Orbitron", sans-serif);
+  font-size: 1.08rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(0, 255, 102, 0.7), 0 0 32px rgba(0, 255, 102, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-glow {
+  color: #00ff66;
+  text-shadow: 0 0 20px #00ff66;
+}
+
+.brand-sep {
+  color: rgba(0, 255, 102, 0.45);
+  font-weight: 300;
+}
+
+.brand-sub {
+  color: #c4f8d6;
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
+}
+
+.hud-brand-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: #527c62;
+  font-weight: 500;
+}
+
+.hud-top-right {
+  position: absolute;
+  top: 20px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: #7fa890;
+  pointer-events: auto;
+  transition: right 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hud-action-btn {
+  background: rgba(6, 12, 9, 0.65);
+  border: 1px solid rgba(0, 255, 102, 0.28);
+  padding: 5px 11px;
+  color: #7fa890;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.x-icon {
+  color: #00ff66;
+  font-weight: 800;
+  font-size: 0.78rem;
+}
+
+.audio-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.audio-dot.active {
+  background-color: #00ff66;
+  box-shadow: 0 0 5px #00ff66;
+}
+
+.audio-dot.muted {
+  background-color: #4f725f;
+}
+
+.hud-bottom-carrier {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: #344e40;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+}
+
+/* --- MOBILE HUD LAYOUT (< 768px) --- */
+@media (max-width: 767px) {
+  .hud-desktop-view {
+    display: none;
+  }
+
+  .hud-mobile-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: max(10px, env(safe-area-inset-top, 10px)) 14px 10px 14px;
+    pointer-events: auto;
+    background: linear-gradient(180deg, rgba(2, 6, 4, 0.85) 0%, rgba(2, 6, 4, 0) 100%);
+    backdrop-filter: blur(4px);
+  }
+
+  .mobile-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-brand-name {
+    font-family: var(--font-orbitron, "Orbitron", sans-serif);
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #00ff66;
+    letter-spacing: 0.16em;
+    text-shadow: 0 0 14px rgba(0, 255, 102, 0.7);
+  }
+
+  .mobile-brand-tag {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: #39ff88;
+    background: rgba(0, 255, 102, 0.12);
+    border: 1px solid rgba(0, 255, 102, 0.35);
+    padding: 1px 5px;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+  }
+
+  .mobile-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-hud-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 6px 10px;
+    min-height: 34px;
+    background: rgba(6, 14, 10, 0.78);
+    border: 1px solid rgba(0, 255, 102, 0.32);
+    color: #39ff88;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    backdrop-filter: blur(6px);
+    transition: all 0.2s ease;
+  }
+
+  .hud-bottom-carrier {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   3. FLOATING COMMAND BUTTONS [ PRESALE ] [ AIRDROP ] & CA BADGE
+   ========================================================================== */
+.orbit-controls-wrapper {
+  position: absolute;
+  bottom: clamp(22px, 5.5vh, 48px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 40;
+  width: 100%;
+  max-width: 480px;
+  padding: 0 16px;
+  transform-origin: center bottom;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.orbit-controls-wrapper.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.orbit-controls-wrapper.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(20px);
+}
+
+/* Mobile viewport adjustments for controls wrapper */
+@media (max-width: 768px) {
+  .orbit-controls-wrapper {
+    bottom: max(14px, env(safe-area-inset-bottom, 14px)) !important;
+    gap: 10px !important;
+    padding: 0 12px !important;
+  }
+}
+
+/* Wallet Address Pill */
+.sci-wallet-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: rgba(5, 10, 8, 0.85);
+  border: 1px solid rgba(0, 255, 102, 0.32);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.22s ease;
+  max-width: 100%;
+  user-select: none;
+}
+
+.sci-wallet-pill:hover,
+.sci-wallet-pill:focus-visible {
+  background: rgba(0, 255, 102, 0.12);
+  border-color: #00ff66;
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.35);
+  transform: translateY(-1px);
+}
+
+.sci-wallet-pill:active {
+  transform: translateY(0);
+}
+
+.sci-wallet-pill.is-copied {
+  background: rgba(0, 255, 102, 0.18) !important;
+  border-color: #00ff66 !important;
+  box-shadow: 0 0 18px rgba(0, 255, 102, 0.4) !important;
+}
+
+.pill-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #00ff66;
+  box-shadow: 0 0 6px #00ff66;
+  animation: ledBlink 2.2s infinite;
+  flex-shrink: 0;
+}
+
+.pill-ca-label {
+  font-size: 0.65rem;
+  color: #7fa890;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pill-ca-address {
+  font-size: 0.76rem;
+  color: #39ff88;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sci-wallet-pill.is-copied .pill-ca-address {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.7);
+}
+
+.pill-ca-address.mobile-address {
+  display: none;
+}
+
+.pill-copy-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  padding: 3px 5px;
+  border-radius: 2px;
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid rgba(0, 255, 102, 0.3);
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.pill-copied-text {
+  font-size: 0.64rem;
+  color: #00ff66;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+/* Mobile address truncation */
+@media (max-width: 480px) {
+  .sci-wallet-pill {
+    padding: 6px 12px;
+    gap: 6px;
+  }
+
+  .pill-ca-label {
+    font-size: 0.6rem;
+  }
+
+  .pill-ca-address {
+    font-size: 0.7rem;
+  }
+
+  .pill-ca-address.desktop-address {
+    display: none;
+  }
+
+  .pill-ca-address.mobile-address {
+    display: inline;
+  }
+}
+
+/* Command Buttons Row */
+.sci-command-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .sci-command-row {
+    gap: 12px;
+    max-width: 380px;
+  }
+}
+
+/* Command Button */
+.sci-command-btn {
+  position: relative;
+  flex: 1;
+  max-width: 175px;
+  padding: 12px 24px;
+  background: rgba(6, 12, 9, 0.82);
+  border: 1px solid rgba(0, 255, 102, 0.35);
+  color: #e6fff0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  outline: none;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  user-select: none;
+  min-height: 44px; /* Accessible tap target */
+}
+
+.sci-command-btn:hover,
+.sci-command-btn:focus-visible {
+  background: rgba(0, 255, 102, 0.14);
+  border-color: #00ff66;
+  box-shadow: 0 0 22px rgba(0, 255, 102, 0.4), inset 0 0 10px rgba(0, 255, 102, 0.18);
+  transform: translateY(-2px);
+}
+
+.sci-command-btn:active {
+  transform: translateY(0);
+}
+
+.btn-status-led {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btn-status-led.led-presale {
+  background-color: #00ff66;
+  box-shadow: 0 0 6px #00ff66;
+  animation: ledBlink 2.2s infinite;
+}
+
+.btn-status-led.led-airdrop {
+  background-color: #39ff88;
+  box-shadow: 0 0 6px #39ff88;
+  animation: ledBlink 2.2s infinite 0.7s;
+}
+
+.btn-label-text {
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .sci-command-btn {
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 360px) {
+  .sci-command-btn {
+    padding: 9px 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* Corner Brackets for buttons & widgets */
+.bracket {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  pointer-events: none;
+  border-color: #00ff66;
+}
+
+.bracket.tl {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid #00ff66;
+  border-left: 2px solid #00ff66;
+}
+
+.bracket.tr {
+  top: -1px;
+  right: -1px;
+  border-top: 2px solid #00ff66;
+  border-right: 2px solid #00ff66;
+}
+
+.bracket.bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 2px solid #00ff66;
+  border-left: 2px solid #00ff66;
+}
+
+.bracket.br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid #00ff66;
+  border-right: 2px solid #00ff66;
+}
+
+/* Scanning light sweep */
+.btn-scan-beam {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 102, 0.25) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: scanningBeamHoriz 3.5s infinite;
+}
+
+/* ==========================================================================
+   4. ASTRONAUT CIRCULAR COUNTDOWN RING
+   ========================================================================== */
+.astronaut-countdown-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  max-width: 520px;
+  max-height: 520px;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: all 0.5s ease;
+}
+
+.countdown-svg-dial {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.rotating-orbit-ring {
+  transform-origin: 0 0;
+  animation: rotateOrbitSlow 90s linear infinite;
+}
+
+.counter-orbit-ring {
+  transform-origin: 0 0;
+  animation: rotateOrbitCounter 60s linear infinite;
+}
+
+.beacon-pulse {
+  animation: beaconGlowPulse 1.8s ease-in-out infinite;
+}
+
+/* Top Mission Countdown Badge */
+.countdown-top-badge {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: rgba(3, 8, 5, 0.88);
+  border: 1px solid rgba(0, 255, 102, 0.35);
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+  backdrop-filter: blur(8px);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: #39ff88;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.countdown-top-badge:hover {
+  border-color: #00ff66;
+  box-shadow: 0 0 25px rgba(0, 255, 102, 0.45);
+  background: rgba(0, 255, 102, 0.12);
+}
+
+.countdown-top-badge .badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #00ff66;
+  box-shadow: 0 0 6px #00ff66;
+  animation: ledBlink 1.5s infinite;
+  flex-shrink: 0;
+}
+
+.countdown-top-badge .badge-target {
+  color: #ffffff;
+  font-weight: 700;
+  padding-left: 6px;
+  border-left: 1px solid rgba(0, 255, 102, 0.35);
+}
+
+/* 4 Orbital Telemetry Time Capsules */
+.orbital-time-quadrants {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.time-node {
+  position: absolute;
+  pointer-events: auto;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 14px;
+  background: rgba(4, 9, 6, 0.85);
+  border: 1px solid rgba(0, 255, 102, 0.28);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 16px rgba(0, 255, 102, 0.16);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.time-node:hover {
+  border-color: #00ff66;
+  background: rgba(0, 255, 102, 0.14);
+  box-shadow: 0 0 26px rgba(0, 255, 102, 0.45), inset 0 0 10px rgba(0, 255, 102, 0.15);
+  transform: scale(1.06);
+}
+
+.node-days {
+  top: 14%;
+  left: 6%;
+}
+
+.node-hours {
+  top: 14%;
+  right: 6%;
+}
+
+.node-mins {
+  bottom: 16%;
+  left: 7%;
+}
+
+.node-secs {
+  bottom: 16%;
+  right: 7%;
+}
+
+.time-node .node-bracket {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-color: #00ff66;
+  pointer-events: none;
+}
+
+.time-node .node-bracket.tl {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid #00ff66;
+  border-left: 2px solid #00ff66;
+}
+
+.time-node .node-bracket.tr {
+  top: -1px;
+  right: -1px;
+  border-top: 2px solid #00ff66;
+  border-right: 2px solid #00ff66;
+}
+
+.time-node .node-bracket.bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 2px solid #00ff66;
+  border-left: 2px solid #00ff66;
+}
+
+.time-node .node-bracket.br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid #00ff66;
+  border-right: 2px solid #00ff66;
+}
+
+.node-val {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+  line-height: 1;
+}
+
+.node-val.glow {
+  color: #39ff88;
+  text-shadow: 0 0 14px rgba(0, 255, 102, 0.8);
+}
+
+.node-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.node-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #7fa890;
+  line-height: 1;
+}
+
+.node-label.live {
+  color: #00ff66;
+}
+
+.node-sub {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  color: #435c4f;
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+
+/* Bottom Launch Status Telemetry Capsule */
+.countdown-bottom-pill {
+  position: absolute;
+  bottom: 5.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 16px;
+  background: rgba(3, 8, 5, 0.9);
+  border: 1px solid rgba(0, 255, 102, 0.38);
+  box-shadow: 0 0 16px rgba(0, 255, 102, 0.22);
+  backdrop-filter: blur(8px);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.countdown-bottom-pill:hover {
+  border-color: #00ff66;
+  box-shadow: 0 0 25px rgba(0, 255, 102, 0.5);
+  background: rgba(0, 255, 102, 0.14);
+}
+
+.countdown-bottom-pill .status-code {
+  color: #39ff88;
+  font-weight: 700;
+}
+
+.countdown-bottom-pill .status-divider {
+  color: rgba(0, 255, 102, 0.4);
+}
+
+.countdown-bottom-pill .status-percent {
+  color: #a3c4b1;
+  font-size: 0.65rem;
+}
+
+.astronaut-countdown-container.is-surging {
+  filter: drop-shadow(0 0 35px rgba(0, 255, 102, 0.8));
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+/* Responsive Scaling for smaller screens */
+@media (max-width: 900px) {
+  .astronaut-countdown-container {
+    width: min(72vh, 500px, 94vw);
+    height: min(72vh, 500px, 94vw);
+  }
+
+  .time-node {
+    padding: 5px 8px;
+    gap: 5px;
+  }
+
+  .node-val {
+    font-size: 1.05rem;
+  }
+
+  .node-label {
+    font-size: 0.55rem;
+  }
+
+  .node-days {
+    top: 11%;
+    left: 4%;
+  }
+
+  .node-hours {
+    top: 11%;
+    right: 4%;
+  }
+
+  .node-mins {
+    bottom: 14%;
+    left: 4%;
+  }
+
+  .node-secs {
+    bottom: 14%;
+    right: 4%;
+  }
+}
+
+/* Mobile Countdown Ring - Prevent viewport overflow */
+@media (max-width: 768px) {
+  .astronaut-countdown-container {
+    width: min(50vh, 320px, 86vw);
+    height: min(50vh, 320px, 86vw);
+    top: 42%;
+  }
+
+  .time-node {
+    padding: 3px 6px;
+    gap: 4px;
+    backdrop-filter: blur(6px);
+  }
+
+  .node-val {
+    font-size: 0.85rem;
+  }
+
+  .node-label {
+    font-size: 0.48rem;
+  }
+
+  .node-sub {
+    display: none;
+  }
+
+  /* Keep quadrant nodes strictly within screen bounds */
+  .node-days {
+    top: 8%;
+    left: 1%;
+  }
+
+  .node-hours {
+    top: 8%;
+    right: 1%;
+  }
+
+  .node-mins {
+    bottom: 12%;
+    left: 1%;
+  }
+
+  .node-secs {
+    bottom: 12%;
+    right: 1%;
+  }
+
+  .countdown-top-badge {
+    font-size: 0.52rem;
+    padding: 3px 8px;
+    top: -2%;
+  }
+
+  .countdown-bottom-pill {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   5. TERMINALS (PRESALE & AIRDROP MODAL PANELS)
+   ========================================================================== */
+.presale-terminal-container,
+.airdrop-terminal-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 560px;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  background: rgba(3, 7, 5, 0.96);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(0, 255, 102, 0.25);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8), -1px 0 20px rgba(0, 255, 102, 0.1);
+  padding: 24px 28px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+
+.terminal-open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.terminal-closed {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.terminal-scan-line {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 255, 102, 0.08) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: scanningBeam 6s linear infinite;
+  z-index: 1;
+}
+
+/* Terminal Header Bar */
+.terminal-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 255, 102, 0.22);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  background: rgba(3, 7, 5, 0.96);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+.terminal-header-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terminal-version-tag {
+  font-size: 0.62rem;
+  font-family: var(--font-mono);
+  color: #00ff66;
+  border: 1px solid rgba(0, 255, 102, 0.4);
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.15em;
+}
+
+.terminal-header-sub {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #7fa890;
+  letter-spacing: 0.15em;
+  margin-top: 4px;
+}
+
+/* Prominent Sci-Fi Close Button */
+.terminal-close-btn {
+  background: rgba(0, 255, 102, 0.08);
+  border: 1px solid #00ff66;
+  color: #00ff66;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  padding: 7px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  outline: none;
+  border-radius: 2px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+  transition: all 0.2s ease;
+  min-height: 38px;
+}
+
+.terminal-close-btn:hover,
+.terminal-close-btn:focus-visible {
+  background: rgba(0, 255, 102, 0.22);
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
+  transform: translateY(-1px);
+}
+
+.terminal-close-btn:active {
+  transform: translateY(0);
+}
+
+.close-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.close-text-desktop {
+  display: inline;
+}
+
+.close-text-mobile {
+  display: none;
+}
+
+/* Mobile Terminal Header & Close Button adjustments */
+@media (max-width: 899px) {
+  .presale-terminal-container,
+  .airdrop-terminal-container {
+    width: 100vw !important;
+    padding: 16px 14px calc(24px + env(safe-area-inset-bottom, 20px)) 14px !important;
+  }
+
+  .terminal-header-bar {
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+
+  .terminal-header-title {
+    font-size: 1.12rem;
+    gap: 6px;
+  }
+
+  .terminal-header-sub {
+    font-size: 0.65rem;
+  }
+
+  .terminal-close-btn {
+    padding: 7px 11px;
+    font-size: 0.72rem;
+    min-height: 38px;
+  }
+
+  .close-text-desktop {
+    display: none;
+  }
+
+  .close-text-mobile {
+    display: inline;
+  }
+}
+
+/* Allocation Row */
+.terminal-allocation-row {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(0, 255, 102, 0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.allocation-label {
+  font-size: 0.72rem;
+  color: #7fa890;
+  letter-spacing: 0.12em;
+}
+
+.allocation-value {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: #00ff66;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+}
+
+/* Tier Selection Grid */
+.terminal-tier-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .terminal-tier-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .tier-card {
+    padding: 10px 6px !important;
+  }
+}
+
+/* Status Badges */
+.sci-telemetry-badge {
+  background: rgba(8, 16, 12, 0.7);
+  border: 1px solid rgba(0, 255, 102, 0.18);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sci-telemetry-badge .label {
+  font-size: 0.62rem;
+  color: #7fa890;
+  letter-spacing: 0.12em;
+}
+
+.sci-telemetry-badge .val {
+  font-size: 0.75rem;
+  color: #ffffff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sci-telemetry-badge .val.live {
+  color: #39ff88;
+}
+
+.sci-telemetry-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff66;
+  box-shadow: 0 0 6px #00ff66;
+  animation: ledBlink 1.8s infinite;
+}
+
+/* Tier Card Selection */
+.tier-card {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.tier-card:hover {
+  border-color: #00ff66 !important;
+  background: rgba(0, 255, 102, 0.15) !important;
+}
+
+.tier-card.selected::before {
+  content: '▶';
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.55rem;
+  color: #00ff66;
+}
+
+/* Primary Action Buttons */
+.sci-primary-buy-btn {
+  transition: all 0.25s ease;
+}
+
+.sci-primary-buy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(0, 255, 102, 0.7), 0 0 10px #00ff66 !important;
+  filter: brightness(1.1);
+}
+
+.sci-primary-buy-btn:active {
+  transform: translateY(0);
+}
+
+.hover-glow-btn:hover {
+  background: rgba(0, 255, 102, 0.15) !important;
+  border-color: #00ff66 !important;
+  box-shadow: 0 0 12px rgba(0, 255, 102, 0.3) !important;
+}
+
+/* Status row */
+.sci-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(6, 12, 9, 0.8);
+  border: 1px solid rgba(0, 255, 102, 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+}
+
+.sci-status-row .key {
+  color: #7fa890;
+  letter-spacing: 0.1em;
+}
+
+.sci-status-row .val.success {
+  color: #00ff66;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
+}
+
+/* Airdrop Specific Styles */
+.airdrop-reward-val {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 5.8vw, 2.2rem);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 15px rgba(0, 255, 102, 0.45);
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+.airdrop-reward-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 0.66rem;
+  font-family: var(--font-mono);
+  color: #39ff88;
+  letter-spacing: 0.1em;
+}
+
+.airdrop-reward-meta .meta-sep {
+  opacity: 0.5;
+}
+
+.terminal-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: rgba(6, 12, 9, 0.7);
+  border: 1px solid rgba(0, 255, 102, 0.2);
+  padding: 10px 14px;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   6. CRT OVERLAY & VIGNETTE EFFECTS
+   ========================================================================== */
+.crt-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  z-index: 100;
+  opacity: 0.45;
+}
+
+.crt-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.75) 100%);
+  z-index: 99;
+}
+
+/* ==========================================================================
+   7. CORE ANIMATIONS
+   ========================================================================== */
+@keyframes zeroGLevitate {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(-1.2deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(0.6deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(1.2deg);
+  }
+}
+
+@keyframes bootThrusterGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes energyFieldPulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes shockwaveRing {
+  0% {
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+  }
+  100% {
+    width: 900px;
+    height: 900px;
+    opacity: 0;
+  }
+}
+
+@keyframes ledBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes scanningBeamHoriz {
+  0% {
+    left: -150%;
+  }
+  50%, 100% {
+    left: 150%;
+  }
+}
+
+@keyframes scanningBeam {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 200%;
+  }
+}
+
+@keyframes rotateOrbitSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateOrbitCounter {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes beaconGlowPulse {
+  0%, 100% {
+    r: 8;
+    opacity: 0.5;
+  }
+  50% {
+    r: 12;
+    opacity: 0.9;
+  }
+}
