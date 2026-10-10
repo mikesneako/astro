@@ -20,7 +20,7 @@ export const config = {
     url: "https://astrobull.space",
     description:
       "An astronaut-inspired Solana meme token. Explore the presale, claim your airdrop, and join the herd.",
-    shareImage: "/bull-astronaut-floating.png",
+    shareImage: "/hero-social-preview.jpg",
     accent: "#53f02b",
     background: "#060a08",
     ink: "#f3f6f1",

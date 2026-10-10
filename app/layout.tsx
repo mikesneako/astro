@@ -5,14 +5,15 @@ import "./globals.css";
 import "./orbit.css";
 
 const title = `${config.brand.name} (${symbol}) — A new orbit`;
+const socialImage = { url: config.site.shareImage, width: 1185, height: 711, type: "image/jpeg", alt: `${config.brand.name} hero: Bullish on outer space, with the floating bull astronaut` };
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: config.site.background };
 export const metadata: Metadata = {
   metadataBase: new URL(config.site.url),
   title,
   description: config.site.description,
   icons: { icon: config.brand.favicon, apple: config.brand.logo || config.brand.favicon },
-  openGraph: { title, description: config.site.description, siteName: config.brand.name, url: config.site.url, images: [config.site.shareImage], type: "website" },
-  twitter: { card: "summary_large_image", title, description: config.site.description, images: [config.site.shareImage] },
+  openGraph: { title, description: config.site.description, siteName: config.brand.name, url: config.site.url, images: [socialImage], type: "website" },
+  twitter: { card: "summary_large_image", title, description: config.site.description, images: [{ url: socialImage.url, alt: socialImage.alt }] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
