@@ -1,11 +1,21 @@
+import { NextResponse } from "next/server";
 import { getPresaleConfig, getPresaleStats } from "@/lib/db";
-
-export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    return Response.json({ success: true, config: getPresaleConfig(), stats: await getPresaleStats() }, { headers: { "Cache-Control": "no-store" } });
-  } catch {
-    return Response.json({ success: false, error: "Presale totals are temporarily unavailable.", config: getPresaleConfig() }, { status: 503, headers: { "Cache-Control": "no-store" } });
+    const config = await getPresaleConfig();
+    const stats = await getPresaleStats();
+
+    return NextResponse.json({
+      success: true,
+      config,
+      stats,
+    });
+  } catch (error: unknown) {
+    const err = error as Error;
+    return NextResponse.json(
+      { success: false, error: err.message || "Failed to fetch presale configuration." },
+      { status: 500 }
+    );
   }
 }

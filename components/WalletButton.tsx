@@ -1,0 +1,18 @@
+"use client";
+
+import React from "react";
+import dynamic from "next/dynamic";
+
+const WalletMultiButtonDynamic = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+  { ssr: false }
+);
+
+export default function WalletButton() {
+  return (
+    <div className="wallet-button-wrapper">
+      <WalletMultiButtonDynamic />
+    </div>
+  );
+}

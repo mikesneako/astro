@@ -1,16 +1,12 @@
 {
-  "name": "astro-bull",
+  "name": "DemoBull",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint app components lib config.ts scripts/*.mjs",
-    "typecheck": "tsc --noEmit",
-    "test": "bun test tests",
-    "db:reset": "bun run scripts/reset-db.mjs",
-    "db:sync": "bun run scripts/sync-db.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "@solana/wallet-adapter-base": "^0.9.28",
