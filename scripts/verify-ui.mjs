@@ -27,7 +27,7 @@ try {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `Horizontal overflow at ${width}px`);
     const amount = page.getByLabel("You send", { exact: true });
     await amount.fill("0.5");
-    assert.equal(await page.locator("output").textContent(), "46,875,000");
+    assert.equal(await page.locator("output").textContent(), "87,500,000");
     if (width === 390) {
       await page.locator("#sol-amount").blur();
       await page.evaluate(() => scrollTo(0, 0));
@@ -49,14 +49,14 @@ try {
   assert.equal(await buy.isDisabled(), true);
   checks.push("Invalid, empty and out-of-range amounts disable copying");
 
-  for (const [label, expected] of [["0.2 SOL for 15M tokens", "15,000,000"], ["1 SOL for 100M tokens", "100,000,000"], ["5 SOL for 650M tokens", "650,000,000"], ["10 SOL for 2B tokens", "2,000,000,000"]]) {
+  for (const [label, expected] of [["0.2 SOL for 20M tokens", "20,000,000"], ["1 SOL for 200M tokens", "200,000,000"], ["2 SOL for 500M tokens", "500,000,000"], ["5 SOL for 650M tokens", "650,000,000"], ["10 SOL for 2B tokens", "2,000,000,000"]]) {
     await page.getByRole("button", { name: label, exact: true }).click();
     assert.equal(await page.locator("output").textContent(), expected);
   }
   assert.equal(await page.getByRole("progressbar").count(), 0);
   assert.equal(await page.getByText("Presale progress", { exact: true }).count(), 0);
-  checks.push("All four pricing tiers are exact and presale progress is removed");
-  await page.getByRole("button", { name: "1 SOL for 100M tokens", exact: true }).click();
+  checks.push("All five pricing tiers are exact and presale progress is removed");
+  await page.getByRole("button", { name: "1 SOL for 200M tokens", exact: true }).click();
   const storageBefore = await page.evaluate(() => JSON.stringify(localStorage));
   await buy.click();
   await page.getByRole("button", { name: "Address copied!", exact: true }).waitFor();

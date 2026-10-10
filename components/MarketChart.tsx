@@ -53,7 +53,7 @@ export default function MarketChart() {
   }, [attempt]);
 
   return <section id="market" className="market-section">
-    <div className="section-heading"><div><span className="eyebrow">THE BULL IS WATCHING THE CANDLES.</span><h2>{config.market.title}</h2></div><span className="simulation-badge">LIVE DATA</span></div>
+    <div className="section-heading"><div><span className="eyebrow">THE BULL IS WATCHING THE CANDLES.</span><h2>{config.market.title}</h2></div><span className="simulation-badge">SIMULATED DATA</span></div>
     {snapshot ? <SnapshotChart key={snapshot.asOf} snapshot={snapshot} /> : <div className="chart-empty" role="status"><RefreshCw size={25} className={error ? "" : "spinner"} /><p>{error ? "The daily chart is temporarily unavailable." : "Loading today’s market snapshot…"}</p>{error && <button className="button" onClick={() => { setError(false); setAttempt((value) => value + 1); }}>Retry chart</button>}</div>}
   </section>;
 }
