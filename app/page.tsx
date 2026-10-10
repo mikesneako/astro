@@ -1,5 +1,5 @@
-import { ArrowDown, ArrowUpRight, Check, ChevronDown, Globe2, MousePointer2, Rocket, Sparkles } from "lucide-react";
-import { config, formatNumber, symbol } from "@/config";
+import { ArrowDown, ArrowUpRight, Check, ChevronDown, Gift, Globe2, MousePointer2, Rocket, Sparkles } from "lucide-react";
+import { config, formatCompactTokens, formatNumber, symbol } from "@/config";
 import Navbar from "@/components/Navbar";
 import Brand from "@/components/Brand";
 import AstronautHero from "@/components/AstronautHero";
@@ -17,15 +17,23 @@ export default function Home() {
       <main id="main" className="shell">
         <section className="hero-grid" aria-label={`${config.brand.name} presale`}>
           <AstronautHero />
-          <BuyPresale />
         </section>
+        <div className="orbit-metrics" aria-label="Presale allocations">
+          {config.presale.tiers.slice(0, 3).map((tier) => <a key={tier.sol} href="#presale"><span>{tier.sol} SOL ALLOCATION</span><strong>{formatCompactTokens(tier.tokens)} <small>{symbol}</small></strong><ArrowUpRight size={20} /></a>)}
+          <a href="#airdrop"><span>COMMUNITY AIRDROP</span><strong>{formatCompactTokens(config.airdrop.rewardTokens)} <small>PER WALLET</small></strong><Gift size={20} /></a>
+        </div>
         <div className="mission-strip"><span><Sparkles size={20} />{config.copy.missionLabel}</span><span>POWERED BY MEMES ✳</span><span>{symbol} TO THE COSMOS</span><a href="#airdrop">FREE SPACE SNACKS <ArrowDown size={18} /></a></div>
+        <section id="presale" className="presale-section">
+          <div className="presale-intro"><span className="eyebrow">01 / EARLY ORBIT</span><h2>Your next orbit<br /><span>starts here.</span></h2><p>Choose your SOL amount and see your {symbol} allocation. Your presale. Your wallet. Your space in the herd.</p>
         <section id="how-to-buy" className="how-section">
           <div className="section-heading"><div><span className="eyebrow">SMOOTH BRAIN? NO PROBLEM.</span><h2>HOW TO JOIN THE HERD.</h2></div><span className="section-aside">3 STEPS. ZERO ROCKET SCIENCE. ↙</span></div>
           <div className="steps-grid">{config.copy.steps.map((step, i) => {
             const Icon = stepIcons[i % stepIcons.length];
             return <article className="step" key={step.title}><div className="step-top"><span className="step-icon"><Icon size={20} strokeWidth={1.5} /></span><span className="step-number">0{i + 1}</span></div><h3>{step.title}</h3><p>{step.description}</p></article>;
           })}</div>
+        </section>
+          </div>
+          <BuyPresale />
         </section>
         <AirdropClaim />
         <MarketChart />

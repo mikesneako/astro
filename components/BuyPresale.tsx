@@ -53,7 +53,7 @@ export default function BuyPresale() {
   }
 
   return (
-    <div className="presale-column" id="presale">
+    <div className="presale-column">
       <div className="presale-card">
         <div className="card-top"><span className="live-badge"><span className="status-dot" />{status === "closed" ? "PRESALE CLOSED" : status === "upcoming" ? "COMING SOON" : config.network.cluster === "mainnet-beta" ? "PRESALE OPEN" : `${config.network.cluster.toUpperCase()} PRESALE`}</span><span className="stage-label">STAGE {String(config.presale.stage).padStart(2, "0")}</span></div>
         <div className="buy-heading"><h2>GET YOUR {symbol}<span>!</span></h2><p>Less scrolling. More cosmic bull energy.</p></div>

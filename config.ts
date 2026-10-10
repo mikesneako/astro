@@ -13,7 +13,7 @@ export const config = {
     description:
       "One bull. Zero gravity. A whole herd of cosmic chaos. Grab your tokens and get in, loser. We’re going to space.",
     astronaut: "/bull-astronaut-floating.png",
-    logo: "/logo.jpg", // Optional logo path; empty uses the orbit icon next to your name.
+    logo: "/astro-bull-logo.png", // Optional logo path; empty uses the orbit icon next to your name.
     favicon: "/favicon.ico",
   },
   site: {
@@ -21,10 +21,10 @@ export const config = {
     description:
       "An astronaut-inspired Solana meme token. Explore the presale, claim your airdrop, and join the herd.",
     shareImage: "/bull-astronaut-floating.png",
-    accent: "#bcff3b",
-    background: "#050505",
-    ink: "#f8f8ee",
-    secondary: "#c5b2ff",
+    accent: "#53f02b",
+    background: "#060a08",
+    ink: "#f3f6f1",
+    secondary: "#a8c5b4",
     pink: "#ffadd2",
   },
   network: {

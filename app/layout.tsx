@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { CSSProperties } from "react";
 import { config, symbol } from "@/config";
 import "./globals.css";
+import "./orbit.css";
 
 const title = `${config.brand.name} (${symbol}) — A new orbit`;
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: config.site.background };
