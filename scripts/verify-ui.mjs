@@ -49,7 +49,7 @@ try {
   assert.equal(await buy.isDisabled(), true);
   checks.push("Invalid, empty and out-of-range amounts disable copying");
 
-  for (const [label, expected] of [["0.2 SOL for 20M tokens", "20,000,000"], ["1 SOL for 200M tokens", "200,000,000"], ["2 SOL for 500M tokens", "500,000,000"], ["5 SOL for 650M tokens", "650,000,000"], ["10 SOL for 2B tokens", "2,000,000,000"]]) {
+  for (const [label, expected] of [["0.2 SOL for 20M tokens", "20,000,000"], ["1 SOL for 200M tokens", "200,000,000"], ["2 SOL for 500M tokens", "500,000,000"], ["5 SOL for 1.5B tokens", "1,500,000,000"], ["10 SOL for 3B tokens", "3,000,000,000"]]) {
     await page.getByRole("button", { name: label, exact: true }).click();
     assert.equal(await page.locator("output").textContent(), expected);
   }

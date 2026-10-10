@@ -9,7 +9,7 @@ export const config = {
     name: "Astro Bull",
     ticker: "ASTROBULL", // No $ prefix; display symbols are derived below.
     tagline: "No gravity. All attitude.",
-    headline: ["BULLISH ON", "OUTER SPACE."],
+    headline: ["THE NEXT", "1000X COIN"],
     description:
       "One bull. Zero gravity. A whole herd of cosmic chaos. Grab your tokens and get in, loser. We’re going to space.",
     astronaut: "/bull-astronaut-floating.png",
@@ -20,7 +20,7 @@ export const config = {
     url: "https://astrobull.space",
     description:
       "An astronaut-inspired Solana meme token. Explore the presale, claim your airdrop, and join the herd.",
-    shareImage: "/hero-social-wide.jpg",
+    shareImage: "/hero-presale-live.jpg",
     accent: "#53f02b",
     background: "#060a08",
     ink: "#f3f6f1",
@@ -52,8 +52,8 @@ export const config = {
       { sol: 0.2, tokens: 20_000_000 },
       { sol: 1, tokens: 200_000_000 },
       { sol: 2, tokens: 500_000_000 },
-      { sol: 5, tokens: 650_000_000 },
-      { sol: 10, tokens: 2_000_000_000 },
+      { sol: 5, tokens: 1_500_000_000 },
+      { sol: 10, tokens: 3_000_000_000 },
     ],
   },
   token: {
@@ -131,7 +131,7 @@ export const config = {
     { label: "Roadmap", href: "#roadmap" },
   ],
   copy: {
-    heroBadge: "SOMEONE GAVE THE BULL A SPACESUIT",
+    heroBadge: "ASTROBULL PRESALE IS LIVE",
     missionLabel: "NO GRAVITY. ALL ATTITUDE.",
     communityTitle: "LESS LURKING. MORE BULL.",
     communityDescription: "The spaceship has Wi-Fi. Come hang with the herd.",

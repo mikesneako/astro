@@ -5,7 +5,7 @@ import "./globals.css";
 import "./orbit.css";
 
 const title = `${config.brand.name} (${symbol}) — A new orbit`;
-const socialImage = { url: config.site.shareImage, width: 1413, height: 740, type: "image/jpeg", alt: `${config.brand.name} hero: Bullish on outer space, with the floating bull astronaut` };
+const socialImage = { url: config.site.shareImage, width: 1413, height: 740, type: "image/jpeg", alt: `${config.brand.name} hero: ${config.copy.heroBadge}. ${config.brand.headline.join(" ")}, with the floating bull astronaut` };
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: config.site.background };
 export const metadata: Metadata = {
   metadataBase: new URL(config.site.url),
